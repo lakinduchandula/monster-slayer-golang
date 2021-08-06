@@ -1,4 +1,4 @@
-package action
+package actions
 
 import (
 	"math/rand"
@@ -10,17 +10,17 @@ var randomSource = rand.NewSource(time.Now().UnixNano())
 var randomGenerator = rand.New(randomSource)
 
 // player-monster health values
-var currentPlayerHealth = 100
-var currentMonsterHealth = 100
+var currentPlayerHealth = PLAYER_HEALTH
+var currentMonsterHealth = MONSTER_HEALTH
 
 func AttackMonster(isSpecialAttack bool) {
 	// min-max attack value for general attack
-	minAttackValue := 5
-	maxAttackValue := 10
+	minAttackValue := PLAYER_ATTACK_MIN_DMG_GENERAL
+	maxAttackValue := PLAYER_ATTACK_MAX_DMG_GENERAL
 
 	if isSpecialAttack {
-		minAttackValue = 10
-		maxAttackValue = 20
+		minAttackValue = PLAYER_ATTACK_MIN_DMG_SPECIAL
+		maxAttackValue = PLAYER_ATTACK_MAX_DMG_SPECIAL
 	}
 
 	// calculate damage-value
@@ -31,22 +31,22 @@ func AttackMonster(isSpecialAttack bool) {
 
 func HealPlayer() {
 	// heal values for general case
-	minHealValue := 7
-	maxHealValue := 15
+	minHealValue := PLAYER_MIN_HEAL_VALUE
+	maxHealValue := PLAYER_MAX_HEAL_VALUE
 
 	// calculate heal-value
 	healValue := generateRandomBetween(minHealValue, maxHealValue)
 	currentPlayerHealth += healValue // current heal value
 
 	// system won't allow playerHealth to be greater than 100
-	if currentPlayerHealth > 100 {
-		currentPlayerHealth = 100
+	if currentPlayerHealth > PLAYER_HEALTH {
+		currentPlayerHealth = PLAYER_HEALTH
 	}
 }
 
 func AttackPlayer() {
-	minAttackValue := 8
-	maxAttackValue := 15
+	minAttackValue := MONSTER_ATTACK_MIN_DMG
+	maxAttackValue := MONSTER_ATTACK_MAX_DMG
 
 	// calculate attack-player value
 	playerAttackValue := generateRandomBetween(minAttackValue, maxAttackValue)

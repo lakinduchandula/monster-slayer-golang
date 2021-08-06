@@ -29,7 +29,7 @@ func startGame() {
 	interaction.PrintGreeting()
 }
 
-// this will hold all the logic for user letting to choose "action"
+// this will hold all the logic for user letting to choose "actions"
 func executeRound() string {
 	/* In every 3 round, currentRound is consider as a special round */
 
