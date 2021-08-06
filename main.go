@@ -4,6 +4,8 @@ import (
 	"github.com/lakinduchandula/monster-slayer-golang/interaction"
 )
 
+var currentRound = 0 // store the current-round
+
 func main() {
 	// start game
 	startGame()
@@ -23,11 +25,18 @@ func main() {
 
 // initial greeting message
 func startGame() {
+	// call interaction pkg and print greeting message
 	interaction.PrintGreeting()
 }
 
 // this will hold all the logic for user letting to choose "action"
 func executeRound() string {
+	/* In every 3 round, currentRound is consider as a special round */
+
+	currentRound += 1                     // increment the current-round by 1
+	isSpecialRound := currentRound%3 == 0 // check if current round is a special one
+
+	interaction.GetActions(isSpecialRound) // prompt appropriate actions according to round-count
 	return "... logic need to define ..."
 }
 
