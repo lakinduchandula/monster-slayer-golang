@@ -1,5 +1,9 @@
 package main
 
+import (
+	"github.com/lakinduchandula/monster-slayer-golang/interaction"
+)
+
 func main() {
 	// start game
 	startGame()
@@ -18,7 +22,9 @@ func main() {
 }
 
 // initial greeting message
-func startGame() {}
+func startGame() {
+	interaction.PrintGreeting()
+}
 
 // this will hold all the logic for user letting to choose "action"
 func executeRound() string {
