@@ -33,7 +33,7 @@ func GetPlayerChoice(isSpecialAttack bool) string {
 }
 
 func getPlayerInput() (string, error) {
-	fmt.Print("Enter Your Choice : ")
+	fmt.Print("\nEnter Your Choice : ")
 
 	// read the user-input
 	playerInput, err := reader.ReadString('\n')

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/lakinduchandula/monster-slayer-golang/interaction"
 )
 
@@ -16,7 +17,6 @@ func main() {
 	for winner == "" {
 		// new round and return whether there is a winner("Player", "Monster") or not ("")
 		winner = executeRound()
-
 	}
 
 	// end Game
@@ -37,7 +37,10 @@ func executeRound() string {
 	isSpecialRound := currentRound%3 == 0 // check if current round is a special one
 
 	interaction.GetActions(isSpecialRound) // prompt appropriate actions according to round-count
-	return "... logic need to define ..."
+	playerChoice := interaction.GetPlayerChoice(isSpecialRound)
+	fmt.Println("CORRECT OUTPUT == >>>", playerChoice)
+	fmt.Printf("----------- NEW ROUND -----------\n\n")
+	return ""
 }
 
 // which will declare the winner and write the log file
