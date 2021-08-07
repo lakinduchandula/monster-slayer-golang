@@ -2,6 +2,7 @@ package interaction
 
 import (
 	"fmt"
+	"github.com/common-nighthawk/go-figure"
 	"os"
 )
 
@@ -25,7 +26,8 @@ func NewRoundStats(action string, playerAttackDmgValue int, monsterAttackValue i
 }
 
 func PrintGreeting() {
-	fmt.Println("\t\tMONSTER-SLAYER")
+	asciiFigure := figure.NewColorFigure("MONSTER-SLAYER", "", "green", true)
+	fmt.Println(asciiFigure)
 	fmt.Println("Let's start a new game! =========")
 }
 
