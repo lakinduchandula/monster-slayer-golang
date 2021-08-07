@@ -81,6 +81,12 @@ func executeRound() string {
 		return "Player"
 	} else if playerHealth == 0 && monsterHealth == 0 {
 		return "DRAW"
+	} else if playerHealth < 0 && monsterHealth < 0 {
+		if playerHealth > monsterHealth {
+			return "Player"
+		} else {
+			return "Monster"
+		}
 	}
 	return ""
 }

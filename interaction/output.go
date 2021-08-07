@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/common-nighthawk/go-figure"
 	"os"
+	"path/filepath"
 )
 
 // RoundStats struct for round statics
@@ -82,7 +83,17 @@ func (stats *RoundStats) PromptRoundStats() {
 }
 
 func WriteLogFile(rounds *[]RoundStats) {
-	file, err := os.Create("gameLog.txt")
+	// exePath contain the current directory that exe resides, also with the name.exe part
+	exePath, err := os.Executable()
+	if err != nil {
+		fmt.Println("Writing log file failed, 00x0EXEPATH_L89")
+		return
+	}
+
+	// this will get rid the name.exe path and take rest of other parts (absolute location)
+	exePath = filepath.Dir(exePath)
+
+	file, err := os.Create(exePath + "/gameLog.txt")
 
 	if err != nil {
 		fmt.Println("Saving to a log file is failed")
