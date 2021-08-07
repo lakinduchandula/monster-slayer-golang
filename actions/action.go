@@ -55,6 +55,10 @@ func AttackPlayer() {
 	currentPlayerHealth -= playerAttackValue
 }
 
+func PlayerMonsterHealth() (int, int) {
+	return currentPlayerHealth, currentMonsterHealth
+}
+
 func generateRandomBetween(min int, max int) int {
 	return randomGenerator.Intn(max-min) + min
 }

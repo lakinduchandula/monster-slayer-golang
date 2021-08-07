@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/lakinduchandula/monster-slayer-golang/actions"
 	"github.com/lakinduchandula/monster-slayer-golang/interaction"
 )
 
@@ -40,6 +41,31 @@ func executeRound() string {
 	playerChoice := interaction.GetPlayerChoice(isSpecialRound)
 	fmt.Println("CORRECT OUTPUT == >>>", playerChoice)
 	fmt.Printf("----------- NEW ROUND -----------\n\n")
+
+	switch playerChoice {
+	case "ATTACK":
+		actions.AttackMonster(false)
+	case "HEAL":
+		actions.HealPlayer()
+	case "SPECIAL_ATTACK":
+		actions.AttackMonster(true)
+	default:
+		fmt.Println("Error Occurred!")
+	}
+
+	// for every round after player attack to monster, monster should attack back
+	actions.AttackPlayer()
+
+	// get player-monster current health to judge winner
+	playerHealth, monsterHealth := actions.PlayerMonsterHealth()
+
+	if playerHealth <= 0 && monsterHealth > 0 {
+		return "Monster"
+	} else if playerHealth > 0 && monsterHealth <= 0 {
+		return "Player"
+	} else if playerHealth == 0 && monsterHealth == 0 {
+		return "DRAW"
+	}
 	return ""
 }
 
