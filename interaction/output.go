@@ -7,7 +7,12 @@ func PrintGreeting() {
 	fmt.Println("Let's start a new game! =========")
 }
 
-func GetActions(isSpecialRound bool) {
+func GetActions(isSpecialRound bool, currentRound int) {
+	// only executes for new rounds, not for first round
+	if currentRound != 1 {
+		fmt.Printf("----------- NEW ROUND -----------\n\n")
+	}
+
 	fmt.Println("===== Pick an Action Below! =====")
 	fmt.Println("\t- (1) Attack Monster")
 	fmt.Println("\t- (2) Heal My Self")
@@ -24,7 +29,7 @@ func DecideWinner(winner string) {
 	if winner == "DRAW" {
 		fmt.Println("\t The game is Draw")
 	} else {
-		fmt.Printf("\t %s is won the game.\n", winner)
+		fmt.Printf("\t%s has won the game.\n", winner)
 	}
 
 	fmt.Println("Thanks for playing!!  ===========")

@@ -12,7 +12,7 @@ func main() {
 	// start game
 	startGame()
 
-	winner := "" // contains "Player", "Monster", ""
+	winner := "" // contains "Player", "Monster", "DRAW", ""
 
 	// execute until winner == "Player" or "Monster"
 	for winner == "" {
@@ -37,10 +37,9 @@ func executeRound() string {
 	currentRound += 1                     // increment the current-round by 1
 	isSpecialRound := currentRound%3 == 0 // check if current round is a special one
 
-	interaction.GetActions(isSpecialRound) // prompt appropriate actions according to round-count
+	interaction.GetActions(isSpecialRound, currentRound) // prompt appropriate actions according to round-count
 	playerChoice := interaction.GetPlayerChoice(isSpecialRound)
-	fmt.Println("CORRECT OUTPUT == >>>", playerChoice)
-	fmt.Printf("----------- NEW ROUND -----------\n\n")
+	fmt.Println("SELECTED CHOICE == >>>", playerChoice)
 
 	switch playerChoice {
 	case "ATTACK":
