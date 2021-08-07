@@ -17,3 +17,16 @@ func GetActions(isSpecialRound bool) {
 		fmt.Println("\t- (3) Special Attack")
 	}
 }
+
+func DecideWinner(winner string) {
+	fmt.Printf("\n--------- Game is Over ----------\n")
+
+	if winner == "DRAW" {
+		fmt.Println("\t The game is Draw")
+	} else {
+		fmt.Printf("\t %s is won the game.\n", winner)
+	}
+
+	fmt.Println("Thanks for playing!!  ===========")
+
+}

@@ -21,7 +21,7 @@ func main() {
 	}
 
 	// end Game
-	endGame()
+	endGame(winner)
 }
 
 // initial greeting message
@@ -59,6 +59,7 @@ func executeRound() string {
 	// get player-monster current health to judge winner
 	playerHealth, monsterHealth := actions.PlayerMonsterHealth()
 
+	// logic to decide winner
 	if playerHealth <= 0 && monsterHealth > 0 {
 		return "Monster"
 	} else if playerHealth > 0 && monsterHealth <= 0 {
@@ -70,4 +71,6 @@ func executeRound() string {
 }
 
 // which will declare the winner and write the log file
-func endGame() {}
+func endGame(winner string) {
+	interaction.DecideWinner(winner)
+}
