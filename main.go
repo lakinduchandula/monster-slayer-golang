@@ -6,7 +6,8 @@ import (
 	"github.com/lakinduchandula/monster-slayer-golang/interaction"
 )
 
-var currentRound = 0 // store the current-round
+var currentRound = 0                   // store the current-round
+var gameRound []interaction.RoundStats // empty dynamic slice to store roundStats for every round
 
 func main() {
 	// start game
@@ -67,6 +68,9 @@ func executeRound() string {
 	roundStats = interaction.NewRoundStats(playerChoice, playerAttackDmgValue, monsterAttackValue, playerHealValue,
 		playerHealth, monsterHealth)
 
+	// append new roundStats for gameRound slice
+	gameRound = append(gameRound, *roundStats)
+
 	// this will print the current round stats to console
 	roundStats.PromptRoundStats()
 
@@ -84,4 +88,5 @@ func executeRound() string {
 // which will declare the winner and write the log file
 func endGame(winner string) {
 	interaction.DecideWinner(winner)
+	interaction.WriteLogFile(&gameRound)
 }

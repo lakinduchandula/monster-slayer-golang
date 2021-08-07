@@ -1,6 +1,9 @@
 package interaction
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // RoundStats struct for round statics
 type RoundStats struct {
@@ -74,4 +77,40 @@ func (stats *RoundStats) PromptRoundStats() {
 		}
 		fmt.Printf("%s%6d%13d\n", "C-HEALTH", stats.PlayerCurrentHealth, stats.MonsterCurrentHealth)
 	}
+}
+
+func WriteLogFile(rounds *[]RoundStats) {
+	file, err := os.Create("gameLog.txt")
+
+	if err != nil {
+		fmt.Println("Saving to a log file is failed")
+		return
+	}
+
+	for index, value := range *rounds {
+		logEntry := map[string]string{
+			"Round":                  fmt.Sprint(index + 1),
+			"Action":                 value.Action,
+			"Player Attack Damage":   fmt.Sprint(value.PlayerAttackDmgValue),
+			"Player Heal Value":      fmt.Sprint(value.PlayerHealValue),
+			"Monster Attack Damage":  fmt.Sprint(value.MonsterAttackValue),
+			"Player Current Health":  fmt.Sprint(value.PlayerCurrentHealth),
+			"Monster Current Health": fmt.Sprint(value.MonsterCurrentHealth),
+		}
+
+		logLine := fmt.Sprintln(logEntry)
+		_, err := file.WriteString(logLine)
+
+		if err != nil {
+			fmt.Println("Error while writing log file")
+			continue
+		}
+	}
+
+	err = file.Close()
+	if err != nil {
+		fmt.Println("file was unable to close")
+		return
+	}
+	fmt.Println("Writing log file was successful")
 }
