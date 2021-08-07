@@ -1,2 +1,2 @@
 # monster-slayer-golang
-building the Monster Slayer game in golang
+monster slayer is simple commad-line game. 
