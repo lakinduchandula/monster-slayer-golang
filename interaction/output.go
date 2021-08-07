@@ -2,6 +2,16 @@ package interaction
 
 import "fmt"
 
+// RoundStats struct for round statics
+type RoundStats struct {
+	Action               string
+	PlayerAttackDmgValue int
+	MonsterAttackValue   int
+	PlayerHealValue      int
+	PlayerCurrentHealth  int
+	MonsterCurrentHealth int
+}
+
 func PrintGreeting() {
 	fmt.Println("\t\tMONSTER-SLAYER")
 	fmt.Println("Let's start a new game! =========")
@@ -33,5 +43,4 @@ func DecideWinner(winner string) {
 	}
 
 	fmt.Println("Thanks for playing!!  ===========")
-
 }
