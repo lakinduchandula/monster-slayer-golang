@@ -12,6 +12,15 @@ type RoundStats struct {
 	MonsterCurrentHealth int
 }
 
+func NewRoundStats(action string, playerAttackDmgValue int, monsterAttackValue int, playerHealValue int,
+	monsterCurrentHealth int, playerCurrentHealth int) *RoundStats {
+	newRoundStats := RoundStats{
+		action, playerAttackDmgValue, monsterAttackValue,
+		playerHealValue, monsterCurrentHealth, playerCurrentHealth,
+	}
+	return &newRoundStats
+}
+
 func PrintGreeting() {
 	fmt.Println("\t\tMONSTER-SLAYER")
 	fmt.Println("Let's start a new game! =========")
@@ -20,7 +29,7 @@ func PrintGreeting() {
 func GetActions(isSpecialRound bool, currentRound int) {
 	// only executes for new rounds, not for first round
 	if currentRound != 1 {
-		fmt.Printf("----------- NEW ROUND -----------\n\n")
+		fmt.Printf("\n----------- NEW ROUND -----------\n")
 	}
 
 	fmt.Println("===== Pick an Action Below! =====")
@@ -43,4 +52,26 @@ func DecideWinner(winner string) {
 	}
 
 	fmt.Println("Thanks for playing!!  ===========")
+}
+
+// PromptRoundStats is a method of roundStats struct
+func (stats *RoundStats) PromptRoundStats() {
+	{
+		fmt.Println("\n ###### Latest Statistics ###### ")
+
+		if stats.Action == "SPECIAL_ATTACK" {
+			fmt.Println(" SELECTED CHOICE >>> SP.(ATTACK)")
+		} else {
+			fmt.Println("  SELECTED CHOICE  >>> ", stats.Action)
+		}
+		fmt.Printf("%16s%13s\n", "Player", "Monster")
+
+		fmt.Printf("%s%11d%13d\n", "DMG", stats.PlayerAttackDmgValue, stats.MonsterAttackValue)
+		if stats.Action == "HEAL" {
+			fmt.Printf("%s%10d%13s\n", "HEAL", stats.PlayerHealValue, "-")
+		} else {
+			fmt.Printf("%s%10d%13s\n", "HEAL", stats.PlayerHealValue, "-")
+		}
+		fmt.Printf("%s%6d%13d\n", "C-HEALTH", stats.PlayerCurrentHealth, stats.MonsterCurrentHealth)
+	}
 }
